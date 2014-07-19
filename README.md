@@ -18,6 +18,7 @@ Requirements
 * This tool made to be run on CentOS 6.4 or later.
 * Run this script on separate CentOS server from where you have access to running MongoDB server and PostgreSQL Server.
 * This script works with PostgreSQL 9.4 beta server and MongoDB 2.6.
+* For better benchmarking, please use CentOS 64 bit machine of same size for MongoDB and PostgreSQl.
 * To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
 
 
@@ -67,6 +68,7 @@ Recommended modules
   1. mongodb-org-2.6.3-1.x86_64
   2. postgresql94-9.4beta1-1PGDG.rhel6.x86_64
   3. bc-1.06.95-1.el6.x86_64
+  4. git-1.7.1-3.el6_4.1.x86_64
 
 Installation
 ------------
