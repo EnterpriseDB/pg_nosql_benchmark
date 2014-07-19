@@ -77,5 +77,5 @@ To install this tool on client server you can use following command:
 
 1. git clone https://github.com/vibhorkum/pg_mongo_benchmark.git
 2. cd pg_mongo_benchmark
-3. bash pg_mongo_benchmark.sh
+3. chmod +x pg_mongo_benchmark.sh
 
