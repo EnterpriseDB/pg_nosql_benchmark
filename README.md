@@ -55,9 +55,9 @@ Requirements
 ```
 
 * To create super user in postgresql, user can use following command:
-
+```
 CREATE USER postgres PASSWORD '<password>' WITH SUPERUSER;
-
+```
 
 For more information on CREATE USER command in PostgreSQL, please use following link:
    http://www.postgresql.org/docs/9.4/static/sql-createuser.html
