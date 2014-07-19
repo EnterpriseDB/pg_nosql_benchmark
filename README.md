@@ -21,7 +21,7 @@ Requirements
 * To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
 
 
- 1. PostgreSQL Variables:
+  PostgreSQL Variables:
 ```   
    PGHOME=/usr/pgsql-9.4    # Installation location of PostgreSQL binaries.
    PGHOST="172.17.0.2"      # Hostname/IP address of PostgreSQL
@@ -31,7 +31,7 @@ Requirements
    PGBIN=/usr/pgsql-9.4/bin # PostgreSQL binary location.
 ```
 
- 2. MongoDB Variables:
+  MongoDB Variables:
 
 ```
    MONGO="/usr/bin/mongo"             # Complete path of mongo Command binary
@@ -55,8 +55,10 @@ Requirements
 
 * To create super user in postgresql, user can use following command:
 
-CREATE USER postgres
-  For creating user in PostgreSQL, user can use CREATE USER command.
+CREATE USER postgres PASSWORD '<password>' WITH SUPERUSER;
+
+
+For more information on CREATE USER command in PostgreSQL, please use following link:
    http://www.postgresql.org/docs/9.4/static/sql-createuser.html
 
 Recommended modules
