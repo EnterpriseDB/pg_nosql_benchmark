@@ -15,20 +15,24 @@ This tool populate amount of data mention json_rows variable in pg_mongo_benchma
 Requirements
 ------------
 
-1. This tool made to be run on CentOS 6.4 or later.
-2. Run this script on separate CentOS server from where you have access to running MongoDB server and PostgreSQL Server.
+* This tool made to be run on CentOS 6.4 or later.
+* Run this script on separate CentOS server from where you have access to running MongoDB server and PostgreSQL Server.
+* This script works with PostgreSQL 9.4 beta server and MongoDB 2.6.
+* To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
 
-To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
+
 1. PostgreSQL Variables:
- <code>  PGHOME=/usr/pgsql-9.4    # Installation location of PostgreSQL binaries.
+```   
+   PGHOME=/usr/pgsql-9.4    # Installation location of PostgreSQL binaries.
    PGHOST="172.17.0.2"      # Hostname/IP address of PostgreSQL
    PGPORT="5432"            # Port number on which PostgreSQL is running.
    PGUSER="postgres"        # PostgreSQL database username.
    PGPASSWORD="postgres"    # PostgreSQL database users password.
    PGBIN=/usr/pgsql-9.4/bin # PostgreSQL binary location.
-</code>
+```
+
 2. MongoDB Variables:
-<code>
+```
    MONGO="/usr/bin/mongo"             # Complete path of mongo Command binary
    MONGOIMPORT="/usr/bin/mongoimport" # complete path of mongoimport binary
    MONGOHOST="172.17.0.3"             # Hostname/IP address of MongoDB
@@ -36,16 +40,17 @@ To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
    MONGOUSER="mongo"                  # Mongo database username
    MONGOPASSWORD="mongo"              # MongoDB database username's password
    MONGODBNAME="benchmark"            # mongoDB database name.
-</code>
-To create userAdmin in MongoDB user can use following command on MongoDB server:
-   mongo benchmark
+```
+
+* create Admin user in MongoDB user can use following command on MongoDB server:
+```
    > db.createUser({ user: "mongo",
                      pwd: "mongo",
                      roles:[{ role: "userAdmin",
                               db: "benchmark"
                             }]
                     })
-
+```
 
 To create super user in postgresql, user can use following command:
   CREATE USER postgres
