@@ -4,16 +4,16 @@ pg_mongo_benchmark
 This is a tool which can be use for benchmark the PostgreSQL (JSONB) and MongoDB (BSON)
 
 Introduction
-==================
+-------------
 
 This is a benchmarking tool which can be use for benchmark the mongoDB 2.6 and postgreSQL 9.4 database with json data.
 This tool populate amount of data mention json_rows variable in pg_mongo_benchmark.sh and does following benchmarking:
-1. Data loading benchmark using mongoimport and copy command of PostgreSQL.
-2. Data loading using mongo insert and PostgreSQL insert.
-3. Benchmarking of 4 selects in Mongo and PostgreSQL and produces the result as average time taken running those SQL.
+* Data loading benchmark using mongoimport and copy command of PostgreSQL.
+* Data loading using mongo insert and PostgreSQL insert.
+* Benchmarking of 4 selects in Mongo and PostgreSQL and produces the result as average time taken running those SQL.
 
 Requirements
-==================
+------------
 
 1. This tool made to be run on CentOS 6.4 or later.
 2. Run this script on separate CentOS server from where you have access to running MongoDB server and PostgreSQL Server.
@@ -53,11 +53,11 @@ To create super user in postgresql, user can use following command:
    http://www.postgresql.org/docs/9.4/static/sql-createuser.html
 
 Recommended modules
-==================
+--------------------
   Following package will be require on server where script will resides:
   1. mongodb-org-2.6.3-1.x86_64
   2. postgresql94-9.4beta1-1PGDG.rhel6.x86_64
   3. bc-1.06.95-1.el6.x86_64
 
 Installation
-==================
+------------
