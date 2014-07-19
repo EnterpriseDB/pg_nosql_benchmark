@@ -20,15 +20,15 @@ Requirements
 
 To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
 1. PostgreSQL Variables:
-   PGHOME=/usr/pgsql-9.4    # Installation location of PostgreSQL binaries.
+ <code>  PGHOME=/usr/pgsql-9.4    # Installation location of PostgreSQL binaries.
    PGHOST="172.17.0.2"      # Hostname/IP address of PostgreSQL
    PGPORT="5432"            # Port number on which PostgreSQL is running.
    PGUSER="postgres"        # PostgreSQL database username.
    PGPASSWORD="postgres"    # PostgreSQL database users password.
    PGBIN=/usr/pgsql-9.4/bin # PostgreSQL binary location.
-
+</code>
 2. MongoDB Variables:
-
+<code>
    MONGO="/usr/bin/mongo"             # Complete path of mongo Command binary
    MONGOIMPORT="/usr/bin/mongoimport" # complete path of mongoimport binary
    MONGOHOST="172.17.0.3"             # Hostname/IP address of MongoDB
@@ -36,7 +36,7 @@ To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
    MONGOUSER="mongo"                  # Mongo database username
    MONGOPASSWORD="mongo"              # MongoDB database username's password
    MONGODBNAME="benchmark"            # mongoDB database name.
-
+</code>
 To create userAdmin in MongoDB user can use following command on MongoDB server:
    mongo benchmark
    > db.createUser({ user: "mongo",
