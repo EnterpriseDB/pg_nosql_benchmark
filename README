@@ -41,15 +41,23 @@ To create userAdmin in MongoDB user can use following command on MongoDB server:
                     })
 
 
-To create super user in postgresql, user can use following command:
-  CREATE USER postgres
-  For creating user in PostgreSQL, user can use CREATE USER command.
+* To create super user in postgresql, user can use following command:
+CREATE USER postgres PASSWORD '<password>' WITH SUPERUSER;
+
+For more information on CREATE USER command in PostgreSQL, please use following link:
    http://www.postgresql.org/docs/9.4/static/sql-createuser.html
+
 
 * Recommended modules
   Following package will be require on server where script will resides:
   1. mongodb-org-2.6.3-1.x86_64
   2. postgresql94-9.4beta1-1PGDG.rhel6.x86_64
   3. bc-1.06.95-1.el6.x86_64
+  4. git-1.7.1-3.el6_4.1.x86_64
 
 * Installation
+To install this tool on client server you can use following command:
+
+1. git clone https://github.com/vibhorkum/pg_mongo_benchmark.git
+2. cd pg_mongo_benchmark
+3. chmod +x pg_mongo_benchmark
