@@ -39,56 +39,22 @@ set -u
 ################################################################################
 # function: print messages with process id
 ################################################################################
-function plog()
+function process_log()
 {
    echo "PID: $$ [RUNTIME: $(date +'%m-%d-%y %H:%M:%S')] ${BASENAME}: $*" >&2
 }
 
 ################################################################################
-# function: exit_error
+# function: exit_on_error
 ################################################################################
-function exit_error()
+function exit_on_error()
 {
 
-   plog "ERROR: $*"
+   process_log "ERROR: $*"
    exit 1
  }
 
-################################################################################
-# function: print_info
-################################################################################
-function pinfo()
-{
-   plog ""
-   plog "INFO: $*"
-   plog ""
-}
 
-################################################################################
-# function: exit_success
-################################################################################
-function exit_success()
-{
-   plog "SUCCESS: $*"
-   exit 0
-}
-
-################################################################################
-# function: if_error
-################################################################################
-function if_error
-{
-   typeset rc=$1
-   shift
-   typeset msg="$*"
-
-   if [[ ${rc} -ne 0 ]]
-   then
-       exit_error "$msg; rc=${rc}"
-   else
-       return 0
-   fi
-}
 
 ################################################################################
 # function: get_timestamp_in_nanoseconds
@@ -155,7 +121,7 @@ function generate_json_rows ()
    typeset -r FILENAME="$2"
 
    rm -rf ${FILENAME}
-   plog "creating json data."
+   process_log "creating json data."
    NO_OF_LOOPS=$((${NO_OF_ROWS}/11 + 1 ))
    for ((i=0;i<${NO_OF_LOOPS};i++))
    do

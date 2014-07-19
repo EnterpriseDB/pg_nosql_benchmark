@@ -87,7 +87,7 @@ function drop_mongocollection ()
    typeset -r F_MONGOCOLLECTION="$6"
    typeset -r F_MONGOCOMMAND="printjson(db.${F_MONGOCOLLECTION}.drop())"
 
-   plog "dropping mongo collection ${F_MONGOCOLLECTION}"
+   process_log "dropping mongo collection ${F_MONGOCOLLECTION}"
    run_mongo_command "${F_MONGOHOST}" "${F_MONGOPORT}" "${F_MONGODBNAME}" \
          "${F_MONGOUSER}" "${F_MONGOPASSWORD}" "${F_MONGOCOMMAND}" >/dev/null
 
@@ -103,7 +103,7 @@ function mongo_json_insert_maker ()
    typeset -r JSON_FILENAME="$3"
 
    rm -rf ${JSON_FILENAME}
-   plog "preparing mongo insert commands."
+   process_log "preparing mongo insert commands."
    NO_OF_LOOPS=$((${NO_OF_ROWS}/11 + 1 ))
    for ((i=0;i<${NO_OF_LOOPS};i++))
    do
@@ -126,7 +126,7 @@ function mongodb_import_benchmark ()
    typeset -r F_COLLECTION="$6"
    typeset -r F_FILENAME="$7"
 
-   plog "testing mongoimport."
+   process_log "testing mongoimport."
    start_time=$(get_timestamp_nano)
    ${MONGOIMPORT} --host ${F_MONGOHOST} --db ${F_MONGODBNAME}             \
                   --username ${F_MONGOUSER} --password ${F_MONGOPASSWORD} \
@@ -152,7 +152,7 @@ function mongodb_inserts_benchmark ()
    typeset -r F_COLLECTION="$6"
    typeset -r F_JSONINSERTS="$7"
 
-   plog "testing inserts in mongo"
+   process_log "testing inserts in mongo"
    start_time=$(get_timestamp_nano)
    run_mongo_file "${F_MONGOHOST}" "${MONGOPORT}" "${F_MONGODBNAME}" \
                   "${F_MONGOUSER}" "${F_MONGOPASSWORD}" \
@@ -180,7 +180,7 @@ function mongodb_select_benchmark ()
    F_MONGOSELECT3="db.${F_COLLECTION}.find({ name: 'AC3 Case Red'})"
    F_MONGOSELECT4="db.${F_COLLECTION}.find({ type: 'service'})"
 
-   plog "testing mongo FIRST SELECT."
+   process_log "testing mongo FIRST SELECT."
    start_time=$(get_timestamp_nano)
    run_mongo_command "${F_MONGOHOST}" "${MONGOPORT}" "${F_MONGODBNAME}" \
                      "${F_MONGOUSER}" \
@@ -188,7 +188,7 @@ function mongodb_select_benchmark ()
    end_time=$(get_timestamp_nano)
    total_time1="$(get_timestamp_diff_nano "${end_time}" "${start_time}")"
 
-   plog "testing mongo SECOND SELECT."
+   process_log "testing mongo SECOND SELECT."
    start_time=$(get_timestamp_nano)
    run_mongo_command "${F_MONGOHOST}" "${MONGOPORT}" "${F_MONGODBNAME}" \
                      "${F_MONGOUSER}" \
@@ -196,7 +196,7 @@ function mongodb_select_benchmark ()
    end_time=$(get_timestamp_nano)
    total_time2="$(get_timestamp_diff_nano "${end_time}" "${start_time}")"
 
-   plog "testing mongo THIRD SELECT."
+   process_log "testing mongo THIRD SELECT."
    start_time=$(get_timestamp_nano)
    run_mongo_command "${F_MONGOHOST}" "${MONGOPORT}" "${F_MONGODBNAME}" \
                     "${F_MONGOUSER}" \
@@ -204,7 +204,7 @@ function mongodb_select_benchmark ()
    end_time=$(get_timestamp_nano)
    total_time3="$(get_timestamp_diff_nano "${end_time}" "${start_time}")"
 
-   plog "testing mongo FOURTH SELECT."
+   process_log "testing mongo FOURTH SELECT."
    start_time=$(get_timestamp_nano)
    run_mongo_command "${F_MONGOHOST}" "${MONGOPORT}" "${F_MONGODBNAME}" \
                      "${F_MONGOUSER}" \
@@ -230,7 +230,7 @@ function mongo_collection_size ()
    typeset -r F_COLLECTION="$6"
    typeset -r F_COMMAND="printjson(db.${F_COLLECTION}.stats())"
 
-   plog "calculating the size of mongo collection."
+   process_log "calculating the size of mongo collection."
    output="$(run_mongo_command "${F_MONGOHOST}" "${F_MONGOPORT}"   \
                                "${F_MONGODBNAME}" "${F_MONGOUSER}" \
                                "${F_MONGOPASSWORD}" "${F_COMMAND}")"
@@ -276,7 +276,7 @@ function mongodb_create_index ()
    typeset -r F_MONGODBIDX2="db.${F_COLLECTION}.ensureIndex( { \"type\": 1});"
    typeset -r F_MONGODBIDX3="db.${F_COLLECTION}.ensureIndex( { \"brand\": 1});"
 
-   plog "creating index in mongodb."
+   process_log "creating index in mongodb."
    run_mongo_command "${F_MONGOHOST}" "${MONGOPORT}" "${F_MONGODBNAME}" \
                      "${F_MONGOUSER}" \
                      "${F_MONGOPASSWORD}" "${F_MONGODBIDX1}" >/dev/null

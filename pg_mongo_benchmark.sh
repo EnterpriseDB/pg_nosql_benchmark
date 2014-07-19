@@ -84,8 +84,8 @@ pg_version=$(pg_version "${PGHOST}"          \
                         "${PGPASSWORD}"
             )
 
-plog "MongoDB Version $mongodb_version"
-plog "PostgreSQL Version $pg_version"
+process_log "MongoDB Version $mongodb_version"
+process_log "PostgreSQL Version $pg_version"
 
 
 for (( indx=0 ; indx < ${#json_rows[@]} ; indx++ ))

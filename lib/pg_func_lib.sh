@@ -45,7 +45,7 @@ function pg_json_insert_maker ()
    typeset -r NO_OF_ROWS="$2"
    typeset -r JSON_FILENAME="$3"
 
-   plog "preparing postgresql INSERTs."
+   process_log "preparing postgresql INSERTs."
    rm -rf ${JSON_FILENAME}
    NO_OF_LOOPS=$((${NO_OF_ROWS}/11 + 1 ))
    for ((i=0;i<${NO_OF_LOOPS};i++))
@@ -102,7 +102,7 @@ function remove_pg_db ()
    typeset -r F_PGPASSWORD="$5"
    typeset -r F_SQL="DROP DATABASE IF EXISTS ${F_DBNAME};"
 
-   plog "droping database ${F_DBNAME} if exists."
+   process_log "droping database ${F_DBNAME} if exists."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "postgres" "${F_PGUSER}" \
            "${F_PGPASSWORD}" "${F_SQL}" 2>/dev/null >/dev/null
 }
@@ -119,7 +119,7 @@ function create_pg_db ()
    typeset -r F_PGPASSWORD="$5"
    typeset -r F_SQL="CREATE DATABASE ${F_DBNAME};"
 
-   plog "creating database ${F_DBNAME}."
+   process_log "creating database ${F_DBNAME}."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "postgres" "${F_PGUSER}" \
            "${F_PGPASSWORD}" "${F_SQL}"
 }
@@ -137,7 +137,7 @@ function pg_relation_size ()
    typeset -r F_RELATION="$6"
    typeset -r F_SQL="SELECT pg_catalog.pg_relation_size('${F_RELATION}');"
 
-   plog "calculating PostgreSQL collection size."
+   process_log "calculating PostgreSQL collection size."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" "${F_SQL}"
 }
@@ -176,7 +176,7 @@ function mk_pg_json_collection ()
    typeset -r F_SQL1="DROP TABLE IF EXISTS ${F_TABLE} CASCADE;"
    typeset -r F_SQL2="CREATE TABLE  ${F_TABLE} (data JSONB);"
 
-  plog "creating ${F_TABLE} collection in postgreSQL."
+  process_log "creating ${F_TABLE} collection in postgreSQL."
   run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
           "${F_PGPASSWORD}" "${F_SQL1}" \
           >/dev/null 2>/dev/null
@@ -199,7 +199,7 @@ function pg_create_index_collection ()
    typeset -r F_TABLE="$6"
    typeset -r F_SQL="CREATE INDEX ${F_TABLE}_idx ON ${F_TABLE} USING gin(data);"
 
-   plog "creating index on postgreSQL collections."
+   process_log "creating index on postgreSQL collections."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" "${F_SQL}" \
             >/dev/null
@@ -219,7 +219,7 @@ function delete_json_data ()
    typeset -r F_PGPASSWORD="$5"
    typeset -r F_COLLECTION="$6"
 
-   plog "droping json object in postgresql."
+   process_log "droping json object in postgresql."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" \
            "TRUNCATE TABLE ${F_COLLECTION};" >/dev/null
@@ -241,7 +241,7 @@ function pg_copy_benchmark ()
 
    DBEXISTS=$(if_dbexists "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" \
                           "${F_PGUSER}" "${F_PGPASSWORD}")
-   plog "loading data in postgresql using ${F_JSONFILE}."
+   process_log "loading data in postgresql using ${F_JSONFILE}."
    start_time=$(get_timestamp_nano)
    cat ${F_JSONFILE}|run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" \
                              "${F_PGUSER}" "${F_PGPASSWORD}" "${F_COPY}"
@@ -267,7 +267,7 @@ function pg_inserts_benchmark ()
    typeset -r F_COLLECTION="$6"
    typeset -r F_INSERTS="$7"
 
-   plog "inserting data in postgresql using ${F_INSERTS}."
+   process_log "inserting data in postgresql using ${F_INSERTS}."
    start_time=$(get_timestamp_nano)
    run_sql_file "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
                 "${F_PGPASSWORD}" "${F_INSERTS}"
@@ -302,35 +302,35 @@ function pg_select_benchmark ()
                             WHERE  (data->>'type') = 'service';"
    local START end_time
 
-   plog "testing FIRST SELECT in postgresql."
+   process_log "testing FIRST SELECT in postgresql."
    start_time=$(get_timestamp_nano)
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" \
-           "${F_SELECT1}" >/dev/null || exit_error "failed to execute SELECT 1."
+           "${F_SELECT1}" >/dev/null || exit_on_error "failed to execute SELECT 1."
    end_time=$(get_timestamp_nano)
    total_time1="$(get_timestamp_diff_nano "${end_time}" "${start_time}")"
 
-   plog "testing SECOND SELECT in postgresql."
+   process_log "testing SECOND SELECT in postgresql."
    start_time=$(get_timestamp_nano)
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" \
-           "${F_SELECT2}" >/dev/null || exit_error "failed to execute SELECT 2."
+           "${F_SELECT2}" >/dev/null || exit_on_error "failed to execute SELECT 2."
    end_time=$(get_timestamp_nano)
    total_time2="$(get_timestamp_diff_nano "${end_time}" "${start_time}")"
 
-   plog "testing THIRD SELECT in postgresql."
+   process_log "testing THIRD SELECT in postgresql."
    start_time=$(get_timestamp_nano)
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" \
-           "${F_SELECT3}" >/dev/null || exit_error "failed to execute SELECT 3."
+           "${F_SELECT3}" >/dev/null || exit_on_error "failed to execute SELECT 3."
    end_time=$(get_timestamp_nano)
    total_time3="$(get_timestamp_diff_nano "${end_time}" "${start_time}")"
 
-   plog "testing FOURTH SELECT in postgresql."
+   process_log "testing FOURTH SELECT in postgresql."
    start_time=$(get_timestamp_nano)
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" \
-           "${F_SELECT4}" >/dev/null || exit_error "failed to execute SELECT 4."
+           "${F_SELECT4}" >/dev/null || exit_on_error "failed to execute SELECT 4."
    end_time=$(get_timestamp_nano)
    total_time4="$(get_timestamp_diff_nano "${end_time}" "${start_time}")"
 
@@ -352,7 +352,7 @@ function analyze_collections ()
    typeset -r F_TABLE="$6"
    typeset -r F_SQL="VACUUM FREEZE ANALYZE ${F_TABLE};"
 
-   plog "performing analyze in postgreSQL."
+   process_log "performing analyze in postgreSQL."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" "${F_SQL}" \
             >/dev/null 2>/dev/null
