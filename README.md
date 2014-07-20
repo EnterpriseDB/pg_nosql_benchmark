@@ -8,11 +8,11 @@ Introduction
 
 This is a benchmarking tool which user can use for benchmark  mongoDB 2.6 (BSON) and postgreSQL 9.4 (JSONB) database with json data.
 
-This tool perform following steps to do the benchmarking of BSON and JSONB:
+This tool perform following to do the benchmarking of BSON and JSONB:
 * Generates JSON rows as per value in json_rows variable in pg_mongo_benchmark.sh
-* Performs benchmarking of data loading in MongoDB and PostgreSQL using mongoimport and PostgreSQL's COPY command.
-* Performs benchmarking of data loading in MongoDB and PostgreSQL using INSERT command.
-* Perfroms benchmarking of 4 SELECT Queries in MongoDB and PostgreSQL and produces the result as an average time taken by 4 SELECT queries.
+* Benchmark data loading in MongoDB and PostgreSQL using mongoimport and PostgreSQL's COPY command.
+* benchmarkdata loading in MongoDB and PostgreSQL using INSERT command.
+* Benchmark 4 SELECT Queries in MongoDB & PostgreSQL and returns result as an average time taken by 4 SELECT queries.
 
 Requirements
 ------------
@@ -66,7 +66,7 @@ For more information on CREATE USER command in PostgreSQL, please use following 
 
 Recommended modules
 --------------------
-  Following package will be require on server where script will resides:
+  Following packages will be needed on server for this tool:
   1. mongodb-org-2.6.3-1.x86_64
   2. postgresql94-9.4beta1-1PGDG.rhel6.x86_64
   3. bc-1.06.95-1.el6.x86_64
@@ -75,7 +75,7 @@ Recommended modules
 Installation
 ------------
 
-To install this tool on client server you can use following command:
+To install this tool on client server, you can use following command:
 
 1. git clone https://github.com/vibhorkum/pg_mongo_benchmark.git
 2. cd pg_mongo_benchmark
