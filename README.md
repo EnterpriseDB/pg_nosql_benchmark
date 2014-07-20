@@ -1,22 +1,24 @@
 pg_mongo_benchmark
 ==================
 
-This is a tool which can be use for benchmark the PostgreSQL (JSONB) and MongoDB (BSON)
+A tool for benchmarking PostgreSQL (JSONB) and MongoDB (BSON)
 
 Introduction
 -------------
 
-This is a benchmarking tool which can be use for benchmark the mongoDB 2.6 and postgreSQL 9.4 database with json data.
-This tool populate amount of data mention json_rows variable in pg_mongo_benchmark.sh and does following benchmarking:
-* Data loading benchmark using mongoimport and copy command of PostgreSQL.
-* Data loading using mongo insert and PostgreSQL insert.
-* Benchmarking of 4 selects in Mongo and PostgreSQL and produces the result as average time taken running those SQL.
+This is a benchmarking tool which user can use for benchmark  mongoDB 2.6 (BSON) and postgreSQL 9.4 (JSONB) database with json data.
+
+This tool perform following steps to do the benchmarking of BSON and JSONB:
+* Generates JSON rows as per value in json_rows variable in pg_mongo_benchmark.sh
+* Performs benchmarking of data loading in MongoDB and PostgreSQL using mongoimport and PostgreSQL's COPY command.
+* Performs benchmarking of data loading in MongoDB and PostgreSQL using INSERT command.
+* Perfroms benchmarking of 4 SELECT Queries in MongoDB and PostgreSQL and produces the result as an average time taken by 4 SELECT queries.
 
 Requirements
 ------------
 
-* This tool made to be run on CentOS 6.4 or later.
-* Run this script on separate CentOS server from where you have access to running MongoDB server and PostgreSQL Server.
+* To run this tool use CentOS 6.4 or later Operating System.
+* Run this script on separate CentOS server from where user has access on MongoDB and PostgreSQL Server.
 * This script works with PostgreSQL 9.4 beta server and MongoDB 2.6.
 * For better benchmarking, please use CentOS 64 bit machine of same size for MongoDB and PostgreSQL.
 * To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
