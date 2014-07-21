@@ -24,7 +24,7 @@ Requirements
 	* PostgreSQL server
 * The MongoDB server and the PostgreSQL server should be configured identically	
 * The script is designed to run from the central load-generating server, which must have access to the MongoDB and PostgreSQL servers.
-* The following environment variables in pg_mongo_benchmark.sh control the execution:
+* The following environment variables in pg_nosql_benchmark control the execution:
 
   PostgreSQL Variables:
 ```   
@@ -81,5 +81,5 @@ To install this tool on the load generating server, use the following command:
 
 1. git clone https://github.com/vibhorkum/pg_mongo_benchmark.git
 2. cd pg_mongo_benchmark
-3. chmod +x pg_mongo_benchmark.sh
+3. chmod +x pg_nosql_benchmark
 
