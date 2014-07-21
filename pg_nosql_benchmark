@@ -1,7 +1,7 @@
 #/bin/bash
 
 #===============================================================================
-#title           : pg_mongo_benchmark.sh.
+#title           : pg_nosql_benchmark.
 #description     : This script will help in benchmarking PostgreSQL (JSONB) and
 #                : MongoDB (BSON).
 #author          : Vibhor Kumar (vibhor.aim@gmail.com).
