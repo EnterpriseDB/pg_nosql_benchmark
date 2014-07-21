@@ -9,7 +9,7 @@ Introduction
 This is a benchmarking tool developed by EnterpriseDB to benchmark  MongoDB 2.6 (BSON) and Postgres 9.4 (JSONB) database using JSON data. The current version focuses on data ingestion and simple select operations in single-instance environments - later versions will include a complete range of workloads (including deleting, updating, appending, and complex select operations) and they will also evaluate multi-server configurations.
 
 This tool performs the following tasks to compare of MongoDB and PostgreSQL:
-* The tool generates a large set of JSON documents (the number of documents is defined by the value of the variable json_rows in pg_mongo_benchmark.sh)
+* The tool generates a large set of JSON documents (the number of documents is defined by the value of the variable json_rows in pg_nosql_benchmark)
 * The data set is loaded into MongoDB and PostgreSQL using mongoimport and PostgreSQL's COPY command.
 * The same data is loaded into MongoDB and PostgreSQL using the INSERT command.
 * The tool executes 4 SELECT Queries in MongoDB & PostgreSQL.
