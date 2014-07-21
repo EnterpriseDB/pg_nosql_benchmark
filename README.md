@@ -1,28 +1,30 @@
-pg_mongo_benchmark
+pg_nosql_benchmark
 ==================
 
-A tool for benchmarking PostgreSQL (JSONB) and MongoDB (BSON)
+This is tool for benchmarking Postgres (JSONB) and MongoDB (BSON)
 
 Introduction
 -------------
 
-This is a benchmarking tool which user can use for benchmark  mongoDB 2.6 (BSON) and postgreSQL 9.4 (JSONB) database with json data.
+This is a benchmarking tool developed by EnterpriseDB to benchmark  MongoDB 2.6 (BSON) and Postgres 9.4 (JSONB) database using JSON data. The current version focuses on data ingestion and simple select operations in single-instance environments - later versions will include a complete range of workloads (including deleting, updating, appending, and complex select operations) and they will also evaluate multi-server configurations.
 
-This tool perform following to do the benchmarking of BSON and JSONB:
-* Generates JSON rows as per value in json_rows variable in pg_mongo_benchmark.sh
-* Benchmark data loading in MongoDB and PostgreSQL using mongoimport and PostgreSQL's COPY command.
-* benchmarkdata loading in MongoDB and PostgreSQL using INSERT command.
-* Benchmark 4 SELECT Queries in MongoDB & PostgreSQL and returns result as an average time taken by 4 SELECT queries.
+This tool performs the following tasks to compare of MongoDB and PostgreSQL:
+* The tool generates a large set of JSON documents (the number of documents is defined by the value of the variable json_rows in pg_mongo_benchmark.sh)
+* The data set is loaded into MongoDB and PostgreSQL using mongoimport and PostgreSQL's COPY command.
+* The same data is loaded into MongoDB and PostgreSQL using the INSERT command.
+* The tool executes 4 SELECT Queries in MongoDB & PostgreSQL.
 
 Requirements
 ------------
 
-* To run this tool use CentOS 6.4 or later Operating System.
-* Run this script on separate CentOS server from where user has access on MongoDB and PostgreSQL Server.
-* This script works with PostgreSQL 9.4 beta server and MongoDB 2.6.
-* For better benchmarking, please use CentOS 64 bit machine of same size for MongoDB and PostgreSQL.
-* To use this tool, set following environment Variables in pg_mongo_benchmark.sh:
-
+* pg_nosql_benchmark uses CentOS 6.4 or later, and is designed for PostgreSQL 9.4 beta server and MongoDB 2.6.
+* The configuration requires three servers
+	* Load generating server
+	* MongoDB server
+	* PostgreSQL server
+* The MongoDB server and the PostgreSQL server should be configured identically	
+* The script is designed to run from the central load-generating server, which must have access to the MongoDB and PostgreSQL servers.
+* The following environment variables in pg_mongo_benchmark.sh control the execution:
 
   PostgreSQL Variables:
 ```   
@@ -46,7 +48,7 @@ Requirements
    MONGODBNAME="benchmark"            # mongoDB database name.
 ```
 
-* create Admin user in MongoDB user can use following command on MongoDB server:
+* To create the admin user in MongoDB use the following command on the MongoDB server:
 ```
    > db.createUser({ user: "mongo",
                      pwd: "mongo",
@@ -56,17 +58,17 @@ Requirements
                     })
 ```
 
-* To create super user in postgresql, user can use following command:
+* To create the super user in PostgreSQL use the following command:
 ```
 CREATE USER postgres PASSWORD '<password>' WITH SUPERUSER;
 ```
 
-For more information on CREATE USER command in PostgreSQL, please use following link:
+For more information on CREATE USER command in PostgreSQL, please check:
    http://www.postgresql.org/docs/9.4/static/sql-createuser.html
 
 Recommended modules
 --------------------
-  Following packages will be needed on server for this tool:
+  The following packages are needed to run the benchmark tool:
   1. mongodb-org-2.6.3-1.x86_64
   2. postgresql94-9.4beta1-1PGDG.rhel6.x86_64
   3. bc-1.06.95-1.el6.x86_64
@@ -75,7 +77,7 @@ Recommended modules
 Installation
 ------------
 
-To install this tool on client server, you can use following command:
+To install this tool on the load generating server, use the following command:
 
 1. git clone https://github.com/vibhorkum/pg_mongo_benchmark.git
 2. cd pg_mongo_benchmark
