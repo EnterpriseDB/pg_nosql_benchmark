@@ -2,7 +2,7 @@
 
 #===============================================================================
 #title           : pg_mongo_benchmark.sh.
-#description     : This script will help in benchamrking PostgreSQL (JSONB) and
+#description     : This script will help in benchmarking PostgreSQL (JSONB) and
 #                : MongoDB (BSON).
 #author          : Vibhor Kumar (vibhor.aim@gmail.com).
 #date            : July 17, 2014
