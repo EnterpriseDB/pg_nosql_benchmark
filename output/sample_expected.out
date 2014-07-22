@@ -1,0 +1,36 @@
+PID: 1251 [RUNTIME: 07-21-14 23:21:24] pg_nosql_benchmark: MongoDB Version 2.6.3
+PID: 1251 [RUNTIME: 07-21-14 23:21:24] pg_nosql_benchmark: PostgreSQL Version 9.4beta1
+PID: 1251 [RUNTIME: 07-21-14 23:21:24] pg_nosql_benchmark: creating json data.
+PID: 1251 [RUNTIME: 07-21-14 23:21:25] pg_nosql_benchmark: preparing postgresql INSERTs.
+PID: 1251 [RUNTIME: 07-21-14 23:21:26] pg_nosql_benchmark: preparing mongo insert commands.
+PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: droping database benchmark if exists.
+PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: creating database benchmark.
+PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: dropping mongo collection json_tables
+PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: creating json_tables collection in postgreSQL.
+PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: loading data in postgresql using sample.json.
+PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: droping json object in postgresql.
+PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: inserting data in postgresql using sample_pg_inserts.json.
+PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: creating index on postgreSQL collections.
+PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: testing mongoimport.
+PID: 1251 [RUNTIME: 07-21-14 23:21:29] pg_nosql_benchmark: dropping mongo collection json_tables
+PID: 1251 [RUNTIME: 07-21-14 23:21:29] pg_nosql_benchmark: testing inserts in mongo
+PID: 1251 [RUNTIME: 07-21-14 23:21:30] pg_nosql_benchmark: creating index in mongodb.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: testing FIRST SELECT in postgresql.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: testing SECOND SELECT in postgresql.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: testing THIRD SELECT in postgresql.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: testing FOURTH SELECT in postgresql.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: calculating PostgreSQL collection size.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: testing mongo FIRST SELECT.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: testing mongo SECOND SELECT.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: testing mongo THIRD SELECT.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: testing mongo FOURTH SELECT.
+PID: 1251 [RUNTIME: 07-21-14 23:21:31] pg_nosql_benchmark: calculating the size of mongo collection.
+      number of rows           1000 
+        PG COPY (ns)      107488390 
+      PG INSERT (ns)      514707930 
+      PG SELECT (ns)       24235127 
+     PG SIZE (bytes)        1490944 
+   MONGO IMPORT (ns)      494436900 
+   MONGO INSERT (ns)     1666742540 
+   MONGO SELECT (ns)       80460677 
+  MONGO SIZE (bytes)        5578752 
