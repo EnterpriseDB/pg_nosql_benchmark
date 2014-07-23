@@ -22,12 +22,12 @@ Requirements
 	* Load generating server
 	* MongoDB server
 	* PostgreSQL server
-* The MongoDB server and the PostgreSQL server should be configured identically	
+* The MongoDB server and the PostgreSQL server should be configured identically
 * The script is designed to run from the central load-generating server, which must have access to the MongoDB and PostgreSQL servers.
 * The following environment variables in pg_nosql_benchmark control the execution:
 
   PostgreSQL Variables:
-```   
+```
    PGHOME=/usr/pgsql-9.4    # Installation location of PostgreSQL binaries.
    PGHOST="172.17.0.2"      # Hostname/IP address of PostgreSQL
    PGPORT="5432"            # Port number on which PostgreSQL is running.
@@ -79,7 +79,6 @@ Installation
 
 To install this tool on the load generating server, use the following command:
 
-1. git clone https://github.com/vibhorkum/pg_mongo_benchmark.git
+1. git clone https://github.com/EnterpriseDB/pg_nosql_benchmark.git
 2. cd pg_mongo_benchmark
 3. chmod +x pg_nosql_benchmark
-
