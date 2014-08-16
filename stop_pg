@@ -1,0 +1,8 @@
+#!/bin/sh
+
+PATH=/usr/pgsql-9.4/bin:$PATH
+export PATH
+
+PGDATA=/disk/disk1/home/snaga/benchmark/pgsql
+
+pg_ctl -w -D ${PGDATA} stop -o "-p 5431"
