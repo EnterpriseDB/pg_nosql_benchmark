@@ -160,21 +160,6 @@ do
                                               "${SAMPLEJSON}"
                           )
 
-   delete_json_data "${PGHOST}"      \
-                    "${PGPORT}"      \
-                    "${PGDATABASE}"  \
-                    "${PGUSER}"      \
-                    "${PGPASSWORD}"  \
-                    "${COLLECTION_NAME}"
-
-   pg_inserts_time[${indx}]=$(pg_inserts_benchmark  "${PGHOST}"          \
-                                                    "${PGPORT}"          \
-                                                    "${PGDATABASE}"      \
-                                                    "${PGUSER}"          \
-                                                    "${PGPASSWORD}"      \
-                                                    "${COLLECTION_NAME}" \
-                                                    "${PG_INSERTS}"
-                              )
 
    pg_create_index_collection "${PGHOST}"     \
                               "${PGPORT}"     \
@@ -192,21 +177,6 @@ do
                                                        "${SAMPLEJSON}"
                               )
 
-   drop_mongocollection "${MONGOHOST}"     \
-                        "${MONGOPORT}"     \
-                        "${MONGODBNAME}"   \
-                        "${MONGOUSER}"     \
-                        "${MONGOPASSWORD}" \
-                        "${COLLECTION_NAME}"
-
-   mongo_inserts_time[${indx}]=$(mongodb_inserts_benchmark "${MONGOHOST}"       \
-                                                           "${MONGOPORT}"       \
-                                                           "${MONGODBNAME}"     \
-                                                           "${MONGOUSER}"       \
-                                                           "${MONGOPASSWORD}"   \
-                                                           "${COLLECTION_NAME}" \
-                                                            "${MONGO_INSERTS}"
-                                )
 
    mongodb_create_index "${MONGOHOST}"     \
                         "${MONGOPORT}"     \
@@ -245,7 +215,54 @@ do
                                                     "${MONGOPASSWORD}" \
                                                     "${COLLECTION_NAME}"
                              )
+   drop_mongocollection "${MONGOHOST}"     \
+                        "${MONGOPORT}"     \
+                        "${MONGODBNAME}"   \
+                        "${MONGOUSER}"     \
+                        "${MONGOPASSWORD}" \
+                        "${COLLECTION_NAME}"
+
+   mongo_inserts_time[${indx}]=$(mongodb_inserts_benchmark "${MONGOHOST}"       \
+                                                           "${MONGOPORT}"       \
+                                                           "${MONGODBNAME}"     \
+                                                           "${MONGOUSER}"       \
+                                                           "${MONGOPASSWORD}"   \
+                                                           "${COLLECTION_NAME}" \
+                                                            "${MONGO_INSERTS}"
+                                )
+
+   drop_mongocollection "${MONGOHOST}"     \
+                        "${MONGOPORT}"     \
+                        "${MONGODBNAME}"   \
+                        "${MONGOUSER}"     \
+                        "${MONGOPASSWORD}" \
+                        "${COLLECTION_NAME}"
+
+   mongo_inserts_time[${indx}]=$(mongodb_inserts_benchmark "${MONGOHOST}"       \
+                                                           "${MONGOPORT}"       \
+                                                           "${MONGODBNAME}"     \
+                                                           "${MONGOUSER}"       \
+                                                           "${MONGOPASSWORD}"   \
+                                                           "${COLLECTION_NAME}" \
+                                                            "${MONGO_INSERTS}"
+                                )
+   delete_json_data "${PGHOST}"      \
+                    "${PGPORT}"      \
+                    "${PGDATABASE}"  \
+                    "${PGUSER}"      \
+                    "${PGPASSWORD}"  \
+                    "${COLLECTION_NAME}"
+
+   pg_inserts_time[${indx}]=$(pg_inserts_benchmark  "${PGHOST}"          \
+                                                    "${PGPORT}"          \
+                                                    "${PGDATABASE}"      \
+                                                    "${PGUSER}"          \
+                                                    "${PGPASSWORD}"      \
+                                                    "${COLLECTION_NAME}" \
+                                                    "${PG_INSERTS}"
+                              )
 done
+
 
 print_result "number of rows"     "${json_rows[@]}"
 print_result "PG COPY (ns)"       "${pg_copy_time[@]}"
