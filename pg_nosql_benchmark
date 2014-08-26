@@ -215,21 +215,6 @@ do
                                                     "${MONGOPASSWORD}" \
                                                     "${COLLECTION_NAME}"
                              )
-   drop_mongocollection "${MONGOHOST}"     \
-                        "${MONGOPORT}"     \
-                        "${MONGODBNAME}"   \
-                        "${MONGOUSER}"     \
-                        "${MONGOPASSWORD}" \
-                        "${COLLECTION_NAME}"
-
-   mongo_inserts_time[${indx}]=$(mongodb_inserts_benchmark "${MONGOHOST}"       \
-                                                           "${MONGOPORT}"       \
-                                                           "${MONGODBNAME}"     \
-                                                           "${MONGOUSER}"       \
-                                                           "${MONGOPASSWORD}"   \
-                                                           "${COLLECTION_NAME}" \
-                                                            "${MONGO_INSERTS}"
-                                )
 
    drop_mongocollection "${MONGOHOST}"     \
                         "${MONGOPORT}"     \
