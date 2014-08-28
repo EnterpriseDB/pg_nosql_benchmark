@@ -30,7 +30,7 @@
 #                : MongoDB (BSON).
 #author          : Vibhor Kumar (vibhor.aim@gmail.com).
 #date            : July 17, 2014
-#version         : 2.0
+#version         : 2.0.1
 #usage           : bash pg_nosql_benchmark
 #notes           : Install Vim and Emacs to use this script.
 #bash_version    : GNU bash, version 4.1.2(1)-release (x86_64-redhat-linux-gnu)
@@ -215,22 +215,7 @@ do
                                                     "${MONGOPASSWORD}" \
                                                     "${COLLECTION_NAME}"
                              )
-   drop_mongocollection "${MONGOHOST}"     \
-                        "${MONGOPORT}"     \
-                        "${MONGODBNAME}"   \
-                        "${MONGOUSER}"     \
-                        "${MONGOPASSWORD}" \
-                        "${COLLECTION_NAME}"
-
-   mongo_inserts_time[${indx}]=$(mongodb_inserts_benchmark "${MONGOHOST}"       \
-                                                           "${MONGOPORT}"       \
-                                                           "${MONGODBNAME}"     \
-                                                           "${MONGOUSER}"       \
-                                                           "${MONGOPASSWORD}"   \
-                                                           "${COLLECTION_NAME}" \
-                                                            "${MONGO_INSERTS}"
-                                )
-
+ 
    drop_mongocollection "${MONGOHOST}"     \
                         "${MONGOPORT}"     \
                         "${MONGODBNAME}"   \
