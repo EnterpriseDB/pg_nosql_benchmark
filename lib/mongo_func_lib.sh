@@ -53,7 +53,7 @@ function run_mongo_command ()
            --username ${F_MONGOUSER}                       \
            --password ${F_MONGOPASSWORD} --quiet <<- EOF
            DBQuery.shellBatchSize = 10000000000;
-           ${F_MONGOCOMMAND}
+           var z = ${F_MONGOCOMMAND};
 EOF
 }
 
