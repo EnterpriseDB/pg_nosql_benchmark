@@ -1,0 +1,11 @@
+#!/bin/sh
+
+PATH=/usr/pgsql-9.4/bin:$PATH
+export PATH
+
+PGDATA=/disk/disk1/home/snaga/benchmark/pgsql
+
+rm -rf ${PGDATA}/*
+
+initdb --no-locale --encoding UTF-8 -D ${PGDATA}
+pg_ctl -w -D ${PGDATA} start -o "-p 5431"

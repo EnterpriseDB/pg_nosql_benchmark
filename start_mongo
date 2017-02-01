@@ -1,0 +1,14 @@
+#!/bin/sh
+
+PATH=/usr/local/mongodb-linux-x86_64-2.6.4/bin:$PATH
+export PATH
+
+MONGODATA=/disk/disk1/home/snaga/benchmark/mongo
+
+rm -rf ${MONGODATA}/*
+
+mongod --fork --auth --logpath ${MONGODATA}/mongo.log --dbpath ${MONGODATA}
+mongo<<EOF
+use benchmark
+db.addUser('mongo', 'mongo')
+EOF

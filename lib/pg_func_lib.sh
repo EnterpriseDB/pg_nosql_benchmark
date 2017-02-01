@@ -117,7 +117,8 @@ function create_pg_db ()
    typeset -r F_DBNAME="$3"
    typeset -r F_PGUSER="$4"
    typeset -r F_PGPASSWORD="$5"
-   typeset -r F_SQL="CREATE DATABASE ${F_DBNAME};"
+   typeset -r F_TABLESPACE="$6"
+   typeset -r F_SQL="CREATE DATABASE ${F_DBNAME} TABLESPACE ${F_TABLESPACE};"
 
    process_log "creating database ${F_DBNAME}."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "postgres" "${F_PGUSER}" \
@@ -139,7 +140,7 @@ function pg_relation_size ()
 
    process_log "calculating PostgreSQL collection size."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
-           "${F_PGPASSWORD}" "${F_SQL}"
+           "${F_PGPASSWORD}" "${F_SQL}" | grep -v SELECT
 }
 
 ################################################################################
@@ -244,7 +245,7 @@ function pg_copy_benchmark ()
    process_log "loading data in postgresql using ${F_JSONFILE}."
    start_time=$(get_timestamp_nano)
    cat ${F_JSONFILE}|run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" \
-                             "${F_PGUSER}" "${F_PGPASSWORD}" "${F_COPY}"
+                             "${F_PGUSER}" "${F_PGPASSWORD}" "${F_COPY}" | grep -v COPY
    end_time=$(get_timestamp_nano)
    total_time="$(get_timestamp_diff_nano "${end_time}" "${start_time}")"
 

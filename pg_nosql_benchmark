@@ -42,21 +42,22 @@
 DIRECTORY=$(dirname $0)
 BASENAME=$(basename $0)
 
-PGHOME="/usr/ppas-9.3"
-PGHOST="172.17.0.4"
-PGPORT="5432"
-PGUSER="postgres"
-PGPASSWORD="postgres"
+PGHOME="/usr/pgsql-9.4"
+PGHOST="127.0.0.1"
+PGPORT="5431"
+PGUSER="snaga"
+PGPASSWORD=""
 PGDATABASE="benchmark"
+PGTABLESPACE="pg_default"
 
-PGBIN="/usr/ppas-9.3/bin"
+PGBIN="/usr/pgsql-9.4/bin"
 
 ################################################################################
 # set mongo variables.
 ################################################################################
-MONGO="/usr/bin/mongo"
-MONGOIMPORT="/usr/bin/mongoimport"
-MONGOHOST="172.17.0.3"
+MONGO="/usr/local/mongodb-linux-x86_64-2.6.4/bin/mongo"
+MONGOIMPORT="/usr/local/mongodb-linux-x86_64-2.6.4/bin/mongoimport"
+MONGOHOST="127.0.0.1"
 MONGOPORT="27017"
 MONGOUSER="mongo"
 MONGOPASSWORD="mongo"
@@ -78,7 +79,8 @@ source ${DIRECTORY}/lib/mongo_func_lib.sh
 ################################################################################
 # declare require arrays
 ################################################################################
-declare -a json_rows=(10000000)
+#declare -a json_rows=(10000000)
+declare -a json_rows=(100000)
 
 declare -a pg_size_time
 declare -a pg_copy_time
@@ -135,7 +137,8 @@ do
                 "${PGPORT}"     \
                 "${PGDATABASE}" \
                 "${PGUSER}"     \
-                "${PGPASSWORD}"
+                "${PGPASSWORD}" \
+                "${PGTABLESPACE}"
 
    drop_mongocollection "${MONGOHOST}"     \
                         "${MONGOPORT}"     \
