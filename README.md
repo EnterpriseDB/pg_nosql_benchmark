@@ -6,7 +6,7 @@ This is tool for benchmarking Postgres (JSONB) and MongoDB (BSON)
 Introduction
 -------------
 
-This is a benchmarking tool developed by EnterpriseDB to benchmark  MongoDB 2.6 (BSON) and Postgres 9.4 (JSONB) database using JSON data. The current version focuses on data ingestion and simple select operations in single-instance environments - later versions will include a complete range of workloads (including deleting, updating, appending, and complex select operations) and they will also evaluate multi-server configurations.
+This is a benchmarking tool developed by EnterpriseDB to benchmark  MongoDB 3.6 (BSON) and Postgres 10 (JSONB) database using JSON data. The current version focuses on data ingestion and simple select operations in single-instance environments - later versions will include a complete range of workloads (including deleting, updating, appending, and complex select operations) and they will also evaluate multi-server configurations.
 
 This tool performs the following tasks to compare of MongoDB and PostgreSQL:
 * The tool generates a large set of JSON documents (the number of documents is defined by the value of the variable json_rows in pg_nosql_benchmark)
@@ -17,7 +17,7 @@ This tool performs the following tasks to compare of MongoDB and PostgreSQL:
 Requirements
 ------------
 
-* pg_nosql_benchmark uses CentOS 6.4 or later, and is designed for PostgreSQL 9.4 beta server and MongoDB 2.6.
+* pg_nosql_benchmark uses Ubuntu 16.04 TLS or later, and is designed for PostgreSQL 10 server and MongoDB 3.6.
 * The configuration requires three servers
 	* Load generating server
 	* MongoDB server
@@ -28,12 +28,12 @@ Requirements
 
   PostgreSQL Variables:
 ```
-   PGHOME=/usr/pgsql-9.4    # Installation location of PostgreSQL binaries.
-   PGHOST="172.17.0.2"      # Hostname/IP address of PostgreSQL
-   PGPORT="5432"            # Port number on which PostgreSQL is running.
-   PGUSER="postgres"        # PostgreSQL database username.
-   PGPASSWORD="postgres"    # PostgreSQL database users password.
-   PGBIN=/usr/pgsql-9.4/bin # PostgreSQL binary location.
+   PGHOME=/usr/lib/postgresql/10    # Installation location of PostgreSQL binaries.
+   PGHOST="172.17.0.2"              # Hostname/IP address of PostgreSQL
+   PGPORT="5432"                    # Port number on which PostgreSQL is running.
+   PGUSER="postgres"                # PostgreSQL database username.
+   PGPASSWORD="postgres"            # PostgreSQL database users password.
+   PGBIN=/usr/lib/postgresql/10/bin # PostgreSQL binary location.
 ```
 
   MongoDB Variables:
@@ -64,21 +64,23 @@ CREATE USER postgres PASSWORD '<password>' WITH SUPERUSER;
 ```
 
 For more information on CREATE USER command in PostgreSQL, please check:
-   http://www.postgresql.org/docs/9.4/static/sql-createuser.html
+   http://www.postgresql.org/docs/10/static/sql-createuser.html
 
 Recommended modules
 --------------------
   The following packages are needed to run the benchmark tool:
-  1. mongodb-org-2.6.3-1.x86_64
-  2. postgresql94-9.4beta1-1PGDG.rhel6.x86_64
-  3. bc-1.06.95-1.el6.x86_64
-  4. git-1.7.1-3.el6_4.1.x86_64
+  1. `mongodb-org`
+  2. `postgresql-10`
+  3. `bc`
+  4. `git`
 
 Installation
 ------------
 
 To install this tool on the load generating server, use the following command:
 
-1. git clone https://github.com/EnterpriseDB/pg_nosql_benchmark.git
-2. cd pg_mongo_benchmark
-3. chmod +x pg_nosql_benchmark
+1. `git clone https://github.com/EnterpriseDB/pg_nosql_benchmark.git`
+2. `cd pg_mongo_benchmark`
+3. `vagrant up`
+4. `vagrant ssh benchmark`
+5. `/vagrant/pg_nosql_benchmark`
