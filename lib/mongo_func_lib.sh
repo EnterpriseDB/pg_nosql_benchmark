@@ -51,7 +51,7 @@ function run_mongo_command ()
 
    ${MONGO} ${F_MONGOHOST}:${F_MONGOPORT}/${F_MONGODBNAME} \
            --username ${F_MONGOUSER}                       \
-           --password ${F_MONGOPASSWORD} --quiet --eval "${F_MONGOCOMMAND}"
+           --password ${F_MONGOPASSWORD} --quiet --eval "DBQuery.shellBatchSize = 10000000; ${F_MONGOCOMMAND}"
 }
 
 ################################################################################
