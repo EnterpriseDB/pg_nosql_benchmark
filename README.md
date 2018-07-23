@@ -68,6 +68,7 @@ For more information on CREATE USER command in PostgreSQL, please check:
 
 Recommended modules
 --------------------
+
   The following packages are needed to run the benchmark tool:
   1. `mongodb-org`
   2. `postgresql-10`
@@ -84,3 +85,5 @@ To install this tool on the load generating server, use the following command:
 3. `vagrant up`
 4. `vagrant ssh benchmark`
 5. `/vagrant/pg_nosql_benchmark`
+
+If not using Vagrant, users may elect to run the scripts in the `setup` folder to set up PostgreSQL and MongoDB; the `pg_nosql_benchmark` program can be run from any server desired, provided that the `Recommended modules` are installed
