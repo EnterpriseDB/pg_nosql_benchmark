@@ -37,19 +37,20 @@
 #===============================================================================
 
 ################################################################################
-# set require variables.
+# set required variables.
 ################################################################################
 DIRECTORY=$(dirname $0)
 BASENAME=$(basename $0)
+[ $# -eq 0 ] && NUM_ROWS=10000000 || NUM_ROWS=$@
 
-PGHOME="/usr/ppas-9.3"
+PGHOME="/usr/lib/postgresql/10"
 PGHOST="172.17.0.4"
 PGPORT="5432"
 PGUSER="postgres"
 PGPASSWORD="postgres"
 PGDATABASE="benchmark"
 
-PGBIN="/usr/ppas-9.3/bin"
+PGBIN="/usr/lib/postgresql/10/bin"
 
 ################################################################################
 # set mongo variables.
@@ -78,7 +79,7 @@ source ${DIRECTORY}/lib/mongo_func_lib.sh
 ################################################################################
 # declare require arrays
 ################################################################################
-declare -a json_rows=(10000000)
+declare -a json_rows=( ${NUM_ROWS} )
 
 declare -a pg_size_time
 declare -a pg_copy_time

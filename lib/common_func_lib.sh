@@ -119,10 +119,28 @@ function generate_json_rows ()
 {
    typeset -r NO_OF_ROWS="$1"
    typeset -r FILENAME="$2"
+   typeset ROWS_IN_FILE=0
+   typeset ROWS_NEEDED=${NO_OF_ROWS}
 
-   rm -rf ${FILENAME}
+   # Don't regenerate entire file if running benchmark in series
+   # Assume valid JSON
+   # Removal case (rm -rf) is for the beginning of the series,
+   # in case previous benchmark generation left behind files
+   if [[ -e ${FILENAME} ]]
+   then
+     ROWS_IN_FILE=$(wc -l ${FILENAME} | awk '{ print $1 }')
+     if [[ ${ROWS_IN_FILE} -lt ${NO_OF_ROWS} ]]
+     then
+       ROWS_NEEDED=$(( NO_OF_ROWS - ROWS_IN_FILE ))
+       process_log "Need to generate ${ROWS_NEEDED} rows"
+     else
+       process_log "Removing ${FILENAME} (${ROWS_IN_FILE} > ${NO_OF_ROWS})"
+       rm -rf ${FILENAME}
+     fi
+   fi
+
    process_log "creating json data."
-   NO_OF_LOOPS=$((${NO_OF_ROWS}/11 + 1 ))
+   NO_OF_LOOPS=$((${ROWS_NEEDED}/11 + 1 ))
    for ((i=0;i<${NO_OF_LOOPS};i++))
    do
        json_seed_data $i >>${FILENAME}
