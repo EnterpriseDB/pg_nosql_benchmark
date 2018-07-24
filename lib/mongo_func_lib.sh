@@ -51,10 +51,7 @@ function run_mongo_command ()
 
    ${MONGO} ${F_MONGOHOST}:${F_MONGOPORT}/${F_MONGODBNAME} \
            --username ${F_MONGOUSER}                       \
-           --password ${F_MONGOPASSWORD} --quiet <<- EOF
-           DBQuery.shellBatchSize = 10000000000;
-           ${F_MONGOCOMMAND}
-EOF
+           --password ${F_MONGOPASSWORD} --quiet --eval "DBQuery.shellBatchSize = 10000000; ${F_MONGOCOMMAND}"
 }
 
 ################################################################################
@@ -228,13 +225,13 @@ function mongo_collection_size ()
    typeset -r F_MONGOUSER="$4"
    typeset -r F_MONGOPASSWORD="$5"
    typeset -r F_COLLECTION="$6"
-   typeset -r F_COMMAND="printjson(db.${F_COLLECTION}.stats())"
+   typeset -r F_COMMAND="printjson(db.getSiblingDB('${F_MONGODBNAME}').${F_COLLECTION}.stats().size)"
 
    process_log "calculating the size of mongo collection."
    output="$(run_mongo_command "${F_MONGOHOST}" "${F_MONGOPORT}"   \
                                "${F_MONGODBNAME}" "${F_MONGOUSER}" \
                                "${F_MONGOPASSWORD}" "${F_COMMAND}")"
-   collectionsize="$(echo ${output}|awk -F"," '{print $5}'|cut -d":" -f2)"
+   collectionsize="$(echo -n ${output})"
 
    echo "${collectionsize}"
 }
@@ -255,7 +252,7 @@ function mongo_version ()
    output="$(run_mongo_command "${F_MONGOHOST}" "${F_MONGOPORT}"   \
                                "${F_MONGODBNAME}" "${F_MONGOUSER}"  \
                                "${F_MONGOPASSWORD}" "${F_COMMAND}" )"
-   version=$(echo $output|awk '{print $2}')
+   version=$(echo -n $output)
 
    echo "${version}"
 }

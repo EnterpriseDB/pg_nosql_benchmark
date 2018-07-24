@@ -3,12 +3,12 @@ PID: 1251 [RUNTIME: 07-21-14 23:21:24] pg_nosql_benchmark: PostgreSQL Version 9.
 PID: 1251 [RUNTIME: 07-21-14 23:21:24] pg_nosql_benchmark: creating json data.
 PID: 1251 [RUNTIME: 07-21-14 23:21:25] pg_nosql_benchmark: preparing postgresql INSERTs.
 PID: 1251 [RUNTIME: 07-21-14 23:21:26] pg_nosql_benchmark: preparing mongo insert commands.
-PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: droping database benchmark if exists.
+PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: dropping database benchmark if exists.
 PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: creating database benchmark.
 PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: dropping mongo collection json_tables
 PID: 1251 [RUNTIME: 07-21-14 23:21:27] pg_nosql_benchmark: creating json_tables collection in postgreSQL.
 PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: loading data in postgresql using sample.json.
-PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: droping json object in postgresql.
+PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: dropping json object in postgresql.
 PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: inserting data in postgresql using sample_pg_inserts.json.
 PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: creating index on postgreSQL collections.
 PID: 1251 [RUNTIME: 07-21-14 23:21:28] pg_nosql_benchmark: testing mongoimport.

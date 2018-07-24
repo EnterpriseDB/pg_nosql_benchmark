@@ -102,7 +102,7 @@ function remove_pg_db ()
    typeset -r F_PGPASSWORD="$5"
    typeset -r F_SQL="DROP DATABASE IF EXISTS ${F_DBNAME};"
 
-   process_log "droping database ${F_DBNAME} if exists."
+   process_log "dropping database ${F_DBNAME} if exists."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "postgres" "${F_PGUSER}" \
            "${F_PGPASSWORD}" "${F_SQL}" 2>/dev/null >/dev/null
 }
@@ -219,7 +219,7 @@ function delete_json_data ()
    typeset -r F_PGPASSWORD="$5"
    typeset -r F_COLLECTION="$6"
 
-   process_log "droping json object in postgresql."
+   process_log "dropping json object in postgresql."
    run_sql "${F_PGHOST}" "${F_PGPORT}" "${F_DBNAME}" "${F_PGUSER}" \
            "${F_PGPASSWORD}" \
            "TRUNCATE TABLE ${F_COLLECTION};" >/dev/null
